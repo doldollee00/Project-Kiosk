@@ -6,9 +6,9 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        //System.out.println("Hello, Kiosk!");
         Scanner sc = new Scanner(System.in);
 
+        //입력된 메뉴를 저장하는 공간 생성
         List<String> name = new ArrayList<>();
         List<Integer> price = new ArrayList<>();
         List<String> info = new ArrayList<>();
@@ -23,12 +23,14 @@ public class Main {
             System.out.print("버거 설명을 입력하세요. : ");
             String burgerInfo = sc.nextLine();
 
+            //.add를 통해 scanner로 받은 값을 List에 저장
             name.add(burgerName);
             price.add(burgerPrice);
             info.add(burgerInfo);
 
-            System.out.println("[ DingaBurger Menu ]");
+            System.out.println("[ BurgerBurger Menu ]");
 
+            //저장된 메뉴들을 불러오기
             for(int i=0; i<name.size(); i++){
                 System.out.println(i + ".  " + name.get(i) + "\t| W " + price.get(i) + "\t| " + info.get(i));
             }
