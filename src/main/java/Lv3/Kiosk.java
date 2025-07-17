@@ -22,7 +22,7 @@ public class Kiosk {
 
         // 반복문을 활용해 List 안에 있는 MenuItem을 하나씩 출력
         for (int i = 0; i < menuItems.size(); i++) {
-            Lv3.MenuItem menulist = menuItems.get(i);
+            MenuItem menulist = menuItems.get(i);
             System.out.println((i + 1) + ".  " + menulist.name + "  |  " + menulist.price + "  |  " + menulist.info);
         }
         System.out.println("------------------------------------");
@@ -46,6 +46,8 @@ public class Kiosk {
                 case 4:
                     System.out.println("울산버거\t|\t100000\t|\t강하다");
                     break;
+                default:
+                    throw new IllegalArgumentException("번호를 잘 못 입력하셨습니다. 종료합니다.");
             }
             // 프로그램을 종료
             if (number == 0) {
