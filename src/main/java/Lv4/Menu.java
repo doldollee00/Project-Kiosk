@@ -17,13 +17,15 @@ public class Menu {
     }
 
     // List에 들어있는 MenuItem을 순차적으로 보여주는 함수
+    public void menulist(){
+        for(int i=0; i<menuItems.size(); i++) {
+            MenuItem menulists = menuItems.get(i);
+            System.out.println((i + 1) + ". " + menulists.name + "  |  " + menulists.price + "  |  " + menulists.info);
+        }
+    }
     // List를 리턴하는 함수
 
-    public List<MenuItem> menulist(){
-        for(int i=0; i<menuItems.size(); i++){
-            MenuItem menulists = menuItems.get(i);
-            System.out.println((i+1) + ". " + menulists.name + "  |  " + menulists.price + "  |  " + menulists.info);
-        }
+    public List<MenuItem> getMenuItems() {
         return menuItems;
     }
 
