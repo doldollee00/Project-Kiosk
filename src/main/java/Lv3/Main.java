@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class main {
+public class Main {
     public static void main(String[] args) {
         //객체 생성
         MenuItem menuItem1 = new MenuItem("뉴욕버거", 10000, "비싸다");

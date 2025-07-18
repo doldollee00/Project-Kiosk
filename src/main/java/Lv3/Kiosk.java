@@ -21,12 +21,15 @@ public class Kiosk {
         Scanner sc = new Scanner(System.in);
 
         // 반복문을 활용해 List 안에 있는 MenuItem을 하나씩 출력
-        for (int i = 0; i < menuItems.size(); i++) {
-            MenuItem menulist = menuItems.get(i);
-            System.out.println((i + 1) + ".  " + menulist.name + "  |  " + menulist.price + "  |  " + menulist.info);
-        }
-        System.out.println("------------------------------------");
+
+
         while (true) {
+            System.out.println("");
+            System.out.println("------------------------------------");
+            for (int i = 0; i < menuItems.size(); i++) {
+                MenuItem menulist = menuItems.get(i);
+                System.out.println((i + 1) + ".  " + menulist.name + "  |  " + menulist.price + "  |  " + menulist.info);
+            }
             // 숫자를 입력 받기
             System.out.println("번호를 선택 하세요. (0은 종료) : ");
             int number = sc.nextInt();
