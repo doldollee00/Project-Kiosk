@@ -21,12 +21,9 @@ public class Main {
         burgers.burgeris(new MenuItem("부산버거", 5000, "저렴하다"));
         burgers.burgeris(new MenuItem("울산버거", 1000000, "강하다"));
 
-
-
-
         // Kiosk 객체 생성
-        Kiosk kiosk = new Kiosk();
+        Kiosk kiosk = new Kiosk(menu);
         // Kiosk 내 시작하는 함수 호출
-        Kiosk.start();
+        kiosk.start();
     }
 }
