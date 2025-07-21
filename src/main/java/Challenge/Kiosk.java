@@ -57,8 +57,7 @@ public class Kiosk {
                 case 3:
                     throw new IllegalArgumentException("디저트는 없습니다.");
                 case 4:
-                    showBag();
-                    System.out.println("byuy");
+                    showBag(sc);
                     break;
                 case 5:
                     bag.clear();
@@ -127,11 +126,24 @@ public class Kiosk {
         }
     }
 
-    public void showBag(){
-        System.out.println(" [ADD BAG MENU] ");
-        for (int i = 0; i < bag.size(); i++){
+    public void showBag(Scanner sc){
+        System.out.println("[ADD BAG MENU] ");
+        int result = 0;
+        for (int i = 0; i < bag.size(); i++) {
             MenuItem item = bag.get(i);
-            System.out.println((i + 1) + ". " + item.getName() + "  |  " + item.getPrice() + "  |  " + item.getInfo());
+            System.out.println(item.getName() + "  |  " + item.getPrice() + "  |  " + item.getInfo());
+            result += item.getPrice();
+        }
+        System.out.println("");
+        System.out.println("[ Total ]");
+        System.out.println(result);
+
+        System.out.println("");
+        System.out.println("1. 주문 \t\t 2. 메뉴판");
+        int number4 = sc.nextInt();
+        if(number4 == 1){
+            System.out.println("주문이 완료 되었습니다. 금액은 "+ result + "입니다.");
+            bag.clear();
         }
     }
 }
