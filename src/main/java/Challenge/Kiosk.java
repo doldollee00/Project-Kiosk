@@ -29,8 +29,8 @@ public class Kiosk {
             if(bag.size() != 0){
                 System.out.println("");
                 System.out.println("[ ORDER MENU ]");
-                System.out.println("4. Orders");
-                System.out.println("5. Cancel");
+                System.out.println("4. Orders\t\t | 장바구니를 확인 후 주문합니다.");
+                System.out.println("5. Cancel\t\t | 진행중인 주문을 취소합니다.");
             }
 
             // 숫자를 입력 받기
@@ -41,20 +41,31 @@ public class Kiosk {
             // 입력 받은 숫자가 올바르다면 인덱스로 활용하여 List에 접근하기
             // List<Menu>에 인덱스로 접근하면 Menu만 추출할 수 있겠죠?
             // 인덱스를 활용하여 햄버거 종류를 출력해야 함
-            Menu bigMenu = menu.get(number1 - 1);
 
-            if(bag.size() == 0) {
-                switch (number1) {
-                    case 1:
-                        menuChoice(sc, bigMenu);
-                        break;
-                    case 2:
-                        throw new IllegalArgumentException("음료는 없습니다.");
-                    case 3:
-                        throw new IllegalArgumentException("디저트는 없습니다.");
-                    default:
-                        throw new IllegalArgumentException("번호를 잘 못 입력하셨습니다. 종료합니다.");
-                }
+            if ((number1 == 4 || number1 == 5) && bag.size() == 0) {
+                //throw new IllegalArgumentException("장바구니가 비어 있습니다. 주문 또는 취소를 할 수 없습니다.");
+                System.out.println("hello");
+            }
+
+            switch (number1) {
+                case 1:
+                    Menu bigMenu = menu.get(number1 - 1);
+                    menuChoice(sc, bigMenu);
+                    break;
+                case 2:
+                    throw new IllegalArgumentException("음료는 없습니다.");
+                case 3:
+                    throw new IllegalArgumentException("디저트는 없습니다.");
+                case 4:
+                    showBag();
+                    System.out.println("byuy");
+                    break;
+                case 5:
+                    bag.clear();
+                    System.out.println("가방을 모두 비웠습니다.");
+                    break;
+                default:
+                    throw new IllegalArgumentException("번호를 잘 못 입력하셨습니다. 종료합니다.");
             }
             // 프로그램을 종료
             if (number1 == 0) {
