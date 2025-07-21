@@ -1,11 +1,14 @@
-package Lv4;
+package Lv5;
+
+import Lv5.Menu;
+import Lv5.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Kiosk {
-    List<Menu> menu = new ArrayList<>();
+    private List<Menu> menu = new ArrayList<>();
 
     public Kiosk(List<Menu> menu) {
         this.menu = menu;
@@ -23,7 +26,7 @@ public class Kiosk {
             // List와 Menu 클래스 활용하여 상위 카테고리 메뉴 출력
             for (int i = 0; i < menu.size(); i++) {
                 Menu bigMenu = menu.get(i);
-                System.out.println((i + 1) + ". " + bigMenu.itemName);
+                System.out.println((i + 1) + ". " + bigMenu.getItemName());
             }
 
             // 숫자를 입력 받기
@@ -61,7 +64,7 @@ public class Kiosk {
             List<MenuItem> items = bigMenu.getMenuItems();
             for (int i = 0; i < items.size(); i++){
                 MenuItem item = items.get(i);
-                System.out.println((i + 1) + ". " + item.name + "  |  " + item.price + "  |  " + item.info);
+                System.out.println((i + 1) + ". " + item.getName() + "  |  " + item.getPrice() + "  |  " + item.getInfo());
             }
 
             System.out.println("햄버거 종류를 선택 하세요. (0은 뒤로가기) : ");
@@ -75,7 +78,7 @@ public class Kiosk {
             }else if(number2 >1 || number2 < items.size()){
                 MenuItem bigMenu2 = items.get(number2 - 1);
                 System.out.print("선택한 메뉴 : ");
-                System.out.println(bigMenu2.name + "  |  " + bigMenu2.price + "  |  " + bigMenu2.info);
+                System.out.println(bigMenu2.getName() + "  |  " + bigMenu2.getPrice() + "  |  " + bigMenu2.getInfo());
                 System.out.println("");
             }else{
                 throw new IllegalArgumentException("번호를 잘 못 입력하셨습니다. 종료합니다.");
