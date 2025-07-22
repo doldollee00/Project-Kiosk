@@ -42,8 +42,7 @@ public class Kiosk {
             // 인덱스를 활용하여 햄버거 종류를 출력해야 함
 
             if ((number1 == 4 || number1 == 5) && bag.size() == 0) {
-                //throw new IllegalArgumentException("장바구니가 비어 있습니다. 주문 또는 취소를 할 수 없습니다.");
-                System.out.println("헬로우");
+                throw new IllegalArgumentException("장바구니가 비어 있습니다. 주문 또는 취소를 할 수 없습니다.");
             }
 
             switch (number1) {
@@ -118,14 +117,14 @@ public class Kiosk {
             System.out.println("\nty! " + bigMenu3.getName() + " 이(가) 장바구니에 추가되었습니다.");
             bag.add(bigMenu3);
         }else if(number3 == 2){
-            System.out.println("취소\n");
+            System.out.println("취소");
         }else{
             throw new IllegalArgumentException("번호를 잘 못 입력하셨습니다. 종료합니다.");
         }
     }
 
     //장바구니 확인 및 구매
-    public void showBag(Scanner sc){
+    public int showBag(Scanner sc){
         System.out.println("\n[ADD BAG MENU] ");
         int result = 0;
         for (int i = 0; i < bag.size(); i++) {
@@ -135,24 +134,41 @@ public class Kiosk {
         }
         System.out.println("\n[ Total ]");
         System.out.println(result);
-
         System.out.println("\n1. 주문 \t\t 2. 메뉴판");
         int number4 = sc.nextInt();
         if(number4 == 1){
-            downpay(sc);
-            System.out.println("주문이 완료 되었습니다. 금액은 "+ result + "입니다.");
+            result = downpay(sc, result);
+            System.out.println("\n주문이 완료 되었습니다. 금액은 "+ result + "입니다.");
             bag.clear();
         }
+        return result;
     }
 
     //할인율 적용
-    public void downpay(Scanner sc){
+    public int downpay(Scanner sc, int sum) {
         System.out.println("\n할인 정보를 입력해 주세요.");
         System.out.println("1. " + Discount.OWNER.getWho() + " : " + Discount.OWNER.getDisc());
         System.out.println("2. " + Discount.SOLDIER.getWho() + " : " + Discount.SOLDIER.getDisc());
         System.out.println("3. " + Discount.STUDENT.getWho() + " : " + Discount.STUDENT.getDisc());
-        System.out.println("4. " +  Discount.CITIZEN.getWho() + " : " + Discount.CITIZEN.getDisc());
-        sc.nextInt();
+        System.out.println("4. " + Discount.CITIZEN.getWho() + " : " + Discount.CITIZEN.getDisc());
+        int number5 = sc.nextInt();
+        double rate = 0;
+        switch (number5) {
+            case 1:
+                rate = sum * 0.9;
+                break;
+            case 2:
+                rate = sum * 0.95;
+                break;
+            case 3:
+                rate = sum * 0.93;
+                break;
+            case 4:
+                rate = sum;
+                break;
+            default:
+                throw new IllegalArgumentException("번호를 잘 못 입력하셨습니다. 종료합니다.");
+        }
+        return (int)rate;
     }
-
 }
