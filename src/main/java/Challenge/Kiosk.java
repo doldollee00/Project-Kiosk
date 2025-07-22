@@ -27,8 +27,7 @@ public class Kiosk {
                 System.out.println((i + 1) + ". " + bigMenu.getItemName());
             }
             if(bag.size() != 0){
-                System.out.println("");
-                System.out.println("[ ORDER MENU ]");
+                System.out.println("\n[ ORDER MENU ]");
                 System.out.println("4. Orders\t\t | 장바구니를 확인 후 주문합니다.");
                 System.out.println("5. Cancel\t\t | 진행중인 주문을 취소합니다.");
             }
@@ -36,7 +35,7 @@ public class Kiosk {
             // 숫자를 입력 받기
             System.out.print("어떤 메뉴를 선택하시겠어요? (0은 종료) : ");
             int number1 = sc.nextInt();
-            System.out.println("");
+
 
             // 입력 받은 숫자가 올바르다면 인덱스로 활용하여 List에 접근하기
             // List<Menu>에 인덱스로 접근하면 Menu만 추출할 수 있겠죠?
@@ -44,7 +43,7 @@ public class Kiosk {
 
             if ((number1 == 4 || number1 == 5) && bag.size() == 0) {
                 //throw new IllegalArgumentException("장바구니가 비어 있습니다. 주문 또는 취소를 할 수 없습니다.");
-                System.out.println("hello");
+                System.out.println("헬로우");
             }
 
             switch (number1) {
@@ -77,7 +76,7 @@ public class Kiosk {
     // Menu가 가진 List<MenuItem>을 반복문을 활용하여 햄버거 메뉴 출력
     public void menuChoice(Scanner sc, Menu bigMenu){
         while(true){
-            System.out.println(" [BURGERS MENU] ");
+            System.out.println(" \n[BURGERS MENU] ");
             List<MenuItem> items = bigMenu.getMenuItems();
             for (int i = 0; i < items.size(); i++){
                 MenuItem item = items.get(i);
@@ -86,7 +85,7 @@ public class Kiosk {
 
             System.out.print("햄버거 종류를 선택 하세요. (0은 뒤로가기) : ");
             int number2 = sc.nextInt();
-            System.out.println("");
+
             // 숫자 입력 받기
             // 입력 받은 숫자가 올바르다면 인덱스로 활용해서 Menu가 가지고 있는 List<MenuItem>에 접근하기
             // menu.getMenuItems().get(i); 같은 형식으로 하나씩 들어가서 얻어와야 합니다.
@@ -106,44 +105,54 @@ public class Kiosk {
         }
     }
 
+    //장바구니 추가 및 메뉴 담기!
     public void addBag(Scanner sc, Menu bigMenu, int number2){
         List<MenuItem> items = bigMenu.getMenuItems();
         MenuItem bigMenu3 = items.get(number2 - 1);
-        System.out.println("hello" + bigMenu3.getName() + "  |  " + bigMenu3.getPrice() + "  |  " + bigMenu3.getInfo());
-        System.out.println("위 메뉴를 장바구나에 추가하시겠습니까?");
+        System.out.println("\n" + bigMenu3.getName() + "  |  " + bigMenu3.getPrice() + "  |  " + bigMenu3.getInfo());
+        System.out.println("\n위 메뉴를 장바구나에 추가하시겠습니까?");
         System.out.println("1. 확인\t\t 2. 취소");
         int number3 = sc.nextInt();
 
         if(number3 == 1){
-            System.out.println("ty! " + bigMenu3.getName() + " 이(가) 장바구니에 추가되었습니다.");
-            System.out.println("");
+            System.out.println("\nty! " + bigMenu3.getName() + " 이(가) 장바구니에 추가되었습니다.");
             bag.add(bigMenu3);
         }else if(number3 == 2){
-            System.out.println("취소");
-            System.out.println("");
+            System.out.println("취소\n");
         }else{
             throw new IllegalArgumentException("번호를 잘 못 입력하셨습니다. 종료합니다.");
         }
     }
 
+    //장바구니 확인 및 구매
     public void showBag(Scanner sc){
-        System.out.println("[ADD BAG MENU] ");
+        System.out.println("\n[ADD BAG MENU] ");
         int result = 0;
         for (int i = 0; i < bag.size(); i++) {
             MenuItem item = bag.get(i);
             System.out.println(item.getName() + "  |  " + item.getPrice() + "  |  " + item.getInfo());
             result += item.getPrice();
         }
-        System.out.println("");
-        System.out.println("[ Total ]");
+        System.out.println("\n[ Total ]");
         System.out.println(result);
 
-        System.out.println("");
-        System.out.println("1. 주문 \t\t 2. 메뉴판");
+        System.out.println("\n1. 주문 \t\t 2. 메뉴판");
         int number4 = sc.nextInt();
         if(number4 == 1){
+            downpay(sc);
             System.out.println("주문이 완료 되었습니다. 금액은 "+ result + "입니다.");
             bag.clear();
         }
     }
+
+    //할인율 적용
+    public void downpay(Scanner sc){
+        System.out.println("\n할인 정보를 입력해 주세요.");
+        System.out.println("1. " + Discount.OWNER.getWho() + " : " + Discount.OWNER.getDisc());
+        System.out.println("2. " + Discount.SOLDIER.getWho() + " : " + Discount.SOLDIER.getDisc());
+        System.out.println("3. " + Discount.STUDENT.getWho() + " : " + Discount.STUDENT.getDisc());
+        System.out.println("4. " +  Discount.CITIZEN.getWho() + " : " + Discount.CITIZEN.getDisc());
+        sc.nextInt();
+    }
+
 }
