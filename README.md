@@ -39,4 +39,6 @@
 - lambda, stream 등 완벽하게 이해하지 못한점 (반복학습이 필요)
 - 드링크나 디저트의 내부 메뉴도 구현해볼 예정
 - List 사용을 잘 하고 있다 생각했는데 그렇지 않았음(Lv5까지 작동하지 않던 메서드를 모르고 있다가 challenge 도전하면서 발견함)
-  
+
+
+[키오스크 만들기(1차 ~ 6차)](https://dinga87.tistory.com/category/SPARTA%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8)
