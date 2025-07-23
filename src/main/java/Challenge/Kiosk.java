@@ -6,7 +6,7 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class Kiosk {
-    private List<Menu> menu = new ArrayList<>();
+    private List<Menu> menu;
     private List<MenuItem> bag = new ArrayList<>();
 
     public Kiosk(List<Menu> menu) {
@@ -49,12 +49,16 @@ public class Kiosk {
             switch (number1) {
                 case 1:
                     Menu bigMenu = menu.get(number1 - 1);
-                    menuChoice(sc, bigMenu);
+                    menuChoice(sc, bigMenu, 1);
                     break;
                 case 2:
-                    throw new IllegalArgumentException("음료는 없습니다.");
+                    Menu bigMenu2 = menu.get(number1 - 1);
+                    menuChoice(sc, bigMenu2, 2);
+                    break;
                 case 3:
-                    throw new IllegalArgumentException("디저트는 없습니다.");
+                    Menu bigMenu3 = menu.get(number1 - 1);
+                    menuChoice(sc, bigMenu3, 3);
+                    break;
                 case 4:
                     showBag(sc);
                     break;
@@ -74,31 +78,38 @@ public class Kiosk {
     }
 
     // Menu가 가진 List<MenuItem>을 반복문을 활용하여 햄버거 메뉴 출력
-    public void menuChoice(Scanner sc, Menu bigMenu){
+    public void menuChoice(Scanner sc, Menu bigMenu, int a){
         while(true){
-            System.out.println(" \n[BURGERS MENU] ");
+            if(a==1){
+                System.out.println(" \n[BURGER MENU] ");
+            }
+            else if(a==2){
+                System.out.println(" \n[DRINK MENU] ");
+            }
+            else{
+                System.out.println(" \n[DESERT MENU] ");
+            }
 
             bigMenu.menulist();
-
             List<MenuItem> items = bigMenu.getMenuItems();
 
-            System.out.print("햄버거 종류를 선택 하세요. (0은 뒤로가기) : ");
+            System.out.print("종류를 선택 하세요. (0은 뒤로가기) : ");
             int number2 = sc.nextInt();
 
             // 숫자 입력 받기
             // 입력 받은 숫자가 올바르다면 인덱스로 활용해서 Menu가 가지고 있는 List<MenuItem>에 접근하기
             // menu.getMenuItems().get(i); 같은 형식으로 하나씩 들어가서 얻어와야 합니다.
 
-            if(number2 == 0){
+            if (number2 == 0) {
                 break;
-            }else if(number2 >1 || number2 < items.size()){
+            } else if (number2 > 1 || number2 < items.size()) {
                 //MenuItem bigMenu2 = items.get(number2 - 1);
                 //System.out.print("선택한 메뉴 : ");
                 //System.out.println(bigMenu2.getName() + "  |  " + bigMenu2.getPrice() + "  |  " + bigMenu2.getInfo());
 
                 //장바구니 추가 여부 확인 메서드 불러오기
                 addBag(sc, bigMenu, number2);
-            }else{
+            } else {
                 throw new IllegalArgumentException("번호를 잘 못 입력하셨습니다. 종료합니다.");
             }
         }

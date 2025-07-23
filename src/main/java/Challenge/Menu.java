@@ -15,7 +15,7 @@ public class Menu {
 
     // MenuItem 클래스를 List로 관리
     private List<MenuItem> menuItems = new ArrayList<>();
-    public void burgeris(MenuItem menuI){
+    public void menuis(MenuItem menuI){
         menuItems.add(menuI);
     }
 
