@@ -3,6 +3,7 @@ package Challenge;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Kiosk {
     private List<Menu> menu = new ArrayList<>();
@@ -76,11 +77,10 @@ public class Kiosk {
     public void menuChoice(Scanner sc, Menu bigMenu){
         while(true){
             System.out.println(" \n[BURGERS MENU] ");
+
+            bigMenu.menulist();
+
             List<MenuItem> items = bigMenu.getMenuItems();
-            for (int i = 0; i < items.size(); i++){
-                MenuItem item = items.get(i);
-                System.out.println((i + 1) + ". " + item.getName() + "  |  " + item.getPrice() + "  |  " + item.getInfo());
-            }
 
             System.out.print("햄버거 종류를 선택 하세요. (0은 뒤로가기) : ");
             int number2 = sc.nextInt();
@@ -132,14 +132,21 @@ public class Kiosk {
             System.out.println(item.getName() + "  |  " + item.getPrice() + "  |  " + item.getInfo());
             result += item.getPrice();
         }
+
         System.out.println("\n[ Total ]");
         System.out.println(result);
-        System.out.println("\n1. 주문 \t\t 2. 메뉴판");
+        System.out.println("\n1. 주문 \t\t 2. 메뉴 취소");
         int number4 = sc.nextInt();
         if(number4 == 1){
             result = downpay(sc, result);
             System.out.println("\n주문이 완료 되었습니다. 금액은 "+ result + "입니다.");
             bag.clear();
+        }else if(number4 == 2){
+            System.out.println("\n어떤 버거를 취소할까요?.");
+            sc.nextLine();
+            String number6 = sc.nextLine();
+
+            bag = bag.stream().filter(bag -> !bag.getName().equals(number6)).collect(Collectors.toList());
         }
         return result;
     }

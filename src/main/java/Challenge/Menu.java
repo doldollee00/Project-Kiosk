@@ -1,7 +1,10 @@
 package Challenge;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Menu {
     private String itemName;
@@ -18,10 +21,12 @@ public class Menu {
 
     // List에 들어있는 MenuItem을 순차적으로 보여주는 함수
     public void menulist(){
-        for(int i=0; i<menuItems.size(); i++) {
-            MenuItem menulists = menuItems.get(i);
-            System.out.println((i + 1) + ". " + menulists.getName() + "  |  " + menulists.getPrice() + "  |  " + menulists.getInfo());
-        }
+        //System.out.println("Stream 시작");
+        menuItems.stream().forEach(menulists -> System.out.println(
+                menulists.getName() + "  |  " +
+                menulists.getPrice() +  "  |  " +
+                menulists.getInfo()));
+        //System.out.println("Stream 끝");
     }
     // List를 리턴하는 함수
     public List<MenuItem> getMenuItems() {
